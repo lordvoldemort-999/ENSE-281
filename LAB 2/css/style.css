@@ -1,3 +1,22 @@
-body {
-    
+h1, h2 {
+    text-align: center;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+}
+
+.work-area {
+    padding: 5px 0px;
+    max-height: 640px;
+    max-width: 435px;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 25px;
+    margin: 0 auto;
+}
+
+.form-container {
+    margin: 0 auto;
+    max-width: 350px;
 }
