@@ -6,30 +6,30 @@ let stickyNotes = document.getElementById("sticky-notes");
 let colors = ["#ff7eb9", "#ff65a3", "#7afcff", "#feff9c", "#fff740"];
 
 let cards = [
-    {
-        title: "Buy Oat Milk",
-        content: "The oatier the better!"
-    },
+  {
+    title: "Buy Oat Milk",
+    content: "The oatier the better!",
+  },
 
-    {
-        title: "Complete Lab 3",
-        content: "Hand it in by midnight"
-    },
+  {
+    title: "Complete Lab 3",
+    content: "Hand it in by midnight",
+  },
 
-    {
-        title: "Eat Supper",
-        content: "Something healthy this time!"
-    }
+  {
+    title: "Eat Supper",
+    content: "Something healthy this time!",
+  },
 ];
 
 function getRandomColor() {
-    return colors[Math.floor(Math.random() * colors.length)];
+  return colors[Math.floor(Math.random() * colors.length)];
 }
 
 for (note of cards) {
-    const randomColor = getRandomColor();
+  const randomColor = getRandomColor();
 
-    stickyNotes.innerHTML += `
+  stickyNotes.innerHTML += `
         <div class="card mb-3" style="background-color: ${randomColor};">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
@@ -61,12 +61,11 @@ for (note of cards) {
 }
 
 function postHandler(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const randomColor = getRandomColor();
+  const randomColor = getRandomColor();
 
-
-    stickyNotes.innerHTML += `
+  stickyNotes.innerHTML += `
         <div class="card mb-3" style="background-color: ${randomColor};">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
@@ -96,18 +95,17 @@ function postHandler(event) {
         </div>
     `;
 
-    card.value = "";
-    cardContent.value = "";
+  card.value = "";
+  cardContent.value = "";
 }
 
 postSubmit.addEventListener("click", postHandler);
 
 stickyNotes.addEventListener("click", function (event) {
-    const burnButton = event.target.closest(".burn");
+  const burnButton = event.target.closest(".burn");
 
-    if (!burnButton) return;
+  if (!burnButton) return;
 
-    const card = burnButton.closest(".card");
-    card.remove();
+  const card = burnButton.closest(".card");
+  card.remove();
 });
-
