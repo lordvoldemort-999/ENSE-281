@@ -3,7 +3,6 @@
   grid-template-rows: 1fr 1fr;
   grid-template-columns: auto auto auto;
   grid-auto-flow: row;
-  column-gap: 2rem;
 }
 
 .card {
