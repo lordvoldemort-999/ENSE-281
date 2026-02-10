@@ -1,23 +1,34 @@
-.container-sm {
+/* .container-sm {
     display: grid;
-    /* column-gap: 20px; */
-    /* row-gap: 10px; */
+    column-gap: 20px;
+    row-gap: 10px; 
     grid-template-rows: auto auto auto auto;
     grid-template-columns: auto auto auto auto;
-}
+} */
 
+.container-sm {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: auto auto;
+    grid-auto-flow: row;
+    column-gap: 2rem;
+}
 .card {
     width: 18rem;
     border-radius: 2px;
 }
 
-#card-1 {
+/* #card-1 {
     background-color: #ff7eb9;
 }
 
 #card-2 {
     background-color: #ff65a3;
 }
+
+#card-3 {
+    background-color: #7afcff;
+} */
 
 .input-form {
     padding: 10px;
