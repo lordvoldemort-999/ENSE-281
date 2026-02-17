@@ -29,18 +29,11 @@ a {
   border-radius: 10px;
   box-shadow: 3px 1px 10px rgb(76, 76, 76);
 }
-.note-area {
-  max-height: fit-content;
-  max-width: fit-content;
-  display: grid;
-  grid-template-rows: auto;
-  row-gap: 10px;
-  margin: 25px auto;
-}
 
 .note-div {
   display: flex;
-  justify-items: space-between;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .to-center {
