@@ -31,11 +31,15 @@ $(document).ready(() => {
     }
   }
 
-  let notes = [
-    new note(0, "User A", "This is a text written by User A"),
-    new note(1, "User B", "This is a text written by User B"),
-    new note(2, "User C", "This is a text written by User C"),
-  ];
+  let notes = [];
+
+  // let notes = [
+  //   new note(0, "User A", "This is a text written by User A"),
+  //   new note(1, "User B", "This is a text written by User B"),
+  //   new note(2, "User C", "This is a text written by User C"),
+  // ];
+
+  
 
   //----------------------------------------------------------------functions-------------------------------------------------------------------------------
   function loadUserInterface(user) {
@@ -59,42 +63,50 @@ $(document).ready(() => {
         downActive = "";
       }
 
+      // TO DO: change note display form <input> to <span> or <p>
       $("#note-container").append(
-        $(`<input type="text" id="note-${noteItem.iD}" class="form-control" placeholder="${noteItem.creator} made this note!"/>
-            <button type="button" class="btn btn-outline-success me-1 ms-1 upvote ${upActive}" data-id="${noteItem.iD}">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-arrow-up"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
-                />
-              </svg>
-            </button>
-            <button type="button" class="btn btn-outline-danger me-1 ms-1 downvote ${downActive}" data-id="${noteItem.iD}">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-arrow-down"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
-                />
-              </svg>
-            </button>`),
+        $(`
+        <div class = "note-div mb-2 p-2 border rounded">
+          <p style="text-align: center" class="my-1">${noteItem.text}</p>
+          <div>
+              <button type="button" class="btn btn-outline-success me-1 ms-1 upvote ${upActive}" data-id="${noteItem.iD}">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-arrow-up"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+                  />
+                </svg>
+              </button>
+              <button type="button" class="btn btn-outline-danger me-1 ms-1 downvote ${downActive}" data-id="${noteItem.iD}">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-arrow-down"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
+                  />
+                </svg>
+                </button>
+                </div>
+              </div>`),
       );
     });
   }
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
   //-------------------------------------event listeners------------------------------------------------------------------------------------------------------------
   $(document).on("click", ".dropdown-item", function () {
@@ -133,7 +145,7 @@ $(document).ready(() => {
     if (textValue.trim() !== "") {
       const newNote = new note(
         notes.length,
-        currentUser.iD,
+        currentUser.name,
         textValue
       );
 
@@ -145,8 +157,7 @@ $(document).ready(() => {
   });
   //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
   loadUserInterface(currentUser);
 
-
-  
 });
