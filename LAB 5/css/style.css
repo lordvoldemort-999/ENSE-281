@@ -30,10 +30,15 @@ a {
   box-shadow: 3px 1px 10px rgb(76, 76, 76);
 }
 
+.note-area {
+  width: 100%;
+  background-color: rgb(161, 173, 162);
+}
+
 .note-div {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
 }
 
 .to-center {
@@ -63,4 +68,8 @@ a {
   grid-template-rows: 1fr 1fr;
   gap: 5px;
   justify-items: center;
+}
+
+.hide {
+  display: none;
 }
