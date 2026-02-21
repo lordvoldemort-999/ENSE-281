@@ -17,16 +17,20 @@ $(document).ready(() => {
     }
 
     upvote(userId) {
-      if (!this.upvoted.includes(userId)) {
+      if (this.upvoted.includes(userId)) {
+        this.upvoted = this.upvoted.filter(id => id !== userId);
+      } else {
         this.upvoted.push(userId);
-        this.downvoted = this.downvoted.filter((id) => id !== userId);
+        this.downvoted = this.downvoted.filter(id => id !== userId);
       }
     }
 
     downvote(userId) {
-      if (!this.downvoted.includes(userId)) {
+      if (this.downvoted.includes(userId)) {
+        this.downvoted = this.downvoted.filter(id => id !== userId);
+      } else {
         this.downvoted.push(userId);
-        this.upvoted = this.upvoted.filter((id) => id !== userId);
+        this.upvoted = this.upvoted.filter(id => id !== userId);
       }
     }
   }
@@ -38,7 +42,6 @@ $(document).ready(() => {
     currentUser = user;
     $("#logged-in-as").text(`Logged in as ${user.name}`);
 
-    // $("#note-container").toggleClass("hide", notes.length === 0);
     $("#list-group").empty();
     
     $.each(notes, function (index, noteItem) {
