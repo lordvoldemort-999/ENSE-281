@@ -1,11 +1,11 @@
 [
     {
-        "username": "aoo988",
+        "email": "aoo988@uregina.ca",
         "password": "abraham@@"
     },
 
     {
-        "username": "secondUser",
+        "email": "secondUser@gmail.com",
         "password": "secondUserPassword"
     }
 ]
