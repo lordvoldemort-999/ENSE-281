@@ -12,10 +12,10 @@ app.get("/", (req, res) => {
   console.log("User requested the root route");
 });
 
-// app.get("/pages/todo.html", (req, res) => {
-//   res.sendFile(__dirname + "/pages/todo.html");
-//   console.log("Successfully requested and sent the todo page");
-// });
+app.get("/pages/todo.html", (req, res) => {
+  res.sendFile(__dirname + "/pages/todo.html");
+  console.log("Successfully requested and sent the todo page");
+});
 
 app.post("/", (req, res) => {
   let email = req.body.email;
