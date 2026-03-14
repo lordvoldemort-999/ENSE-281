@@ -1,5 +1,5 @@
 <form action="/upvote" method="post">
-    <button type="submit" class="btn btn-outline-success upvote ms-0 ${upActive}">
+    <button type="submit" class="btn ms-0 <%= post.upvotes.includes(email) ? 'btn-success' : 'btn-outline-success' %>">
         <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -15,12 +15,12 @@
         </svg>
     </button>
     <form>
-        <input type="text" hidden name="post_id" value=<%= post._id %>>
-        <input type="text" hidden name="voterEmail" value=<%= email %>>
+        <input type="hidden" name="post_id" value="<%= post._id %>">
+        <input type="hidden" name="voterEmail" value="<%= email %>">
     </form>
 </form>
 <form action="/downvote" method="post">
-    <button type="submit" class="btn btn-outline-danger downvote ${downActive}" data-id=<%= post._id %> >
+    <button type="submit" class="btn <%= post.downvotes.includes(email) ? 'btn-danger' : 'btn-outline-danger' %>">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -36,7 +36,7 @@
         </svg>
     </button>
     <form>
-        <input type="text" hidden name="post_id" value=<%= post._id %>>
-        <input type="text" hidden name="voterEmail" value=<%= email %>>
+        <input type="hidden" hidden name="post_id" value="<%= post._id %>">
+        <input type="hidden" hidden name="voterEmail" value="<%= email %>">
     </form>
 </form>
