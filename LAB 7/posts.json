@@ -2,43 +2,50 @@
   {
     "_id": "0",
     "text": "First post by User 1",
-    "creator": "User 1",
+    "creator": "aoo988@uregina.ca",
     "upvotes": [],
     "downvotes": []
   },
   {
     "_id": "1",
     "text": "Second post by User 1",
-    "creator": "User 1",
-    "upvotes": [2],
+    "creator": "aoo988@uregina.ca",
+    "upvotes": ["secondUser@gmail.com"],
     "downvotes": []
   },
   {
     "_id": "2",
     "text": "Third post by User 1",
-    "creator": "User 1",
+    "creator": "aoo988@uregina.ca",
     "upvotes": [],
-    "downvotes": [2]
+    "downvotes": ["secondUser@gmail.com"]
   },
   {
     "_id": "3",
     "text": "First post by User 2",
-    "creator": "User 2",
+    "creator": "secondUser@gmail.com",
     "upvotes": [],
     "downvotes": []
   },
   {
-    "__id": "4",
-    "text": "Second post made by User 2",
-    "creator": "User 2",
-    "upvotes": [],
+    "_id": "4",
+    "text": "Second post by User 2",
+    "creator": "secondUser@gmail.com",
+    "upvotes": ["aoo988@uregina.ca"],
     "downvotes": []
   },
   {
-    "__id": "5",
+    "_id": "5",
     "text": "Third post by User 2",
-    "creator": "User 2",
+    "creator": "secondUser@gmail.com",
     "upvotes": [],
-    "downvotes": [1]
+    "downvotes": ["aoo988@uregina.ca"]
+  },
+  {
+    "_id": "6",
+    "text": "Test post. Lets see if im finally done ffs ",
+    "creator": "aoo988@uregina.ca",
+    "upvotes": [],
+    "downvotes": []
   }
 ]
