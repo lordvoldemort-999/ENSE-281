@@ -81,6 +81,7 @@ app.post("/login", (req, res) => {
 app.post("/register", (req, res) => {
   let inviteCode = req.body.inviteCode.trim();
   let email = req.body.email;
+  let users = readFromUsers();
   let password = req.body.password;
 
   console.log(req.body);
@@ -89,7 +90,6 @@ app.post("/register", (req, res) => {
     inviteCode === "Note Vote 2026" &&
     !users.find((user) => user.email === email)
   ) {
-    let users = readFromUsers();
     let posts = readFromPosts();
     const newUser = { email: `${email}`, password: `${password}` };
     writeToUsers(newUser);
@@ -175,7 +175,7 @@ app.post("/post", (req, res) => {
     writeToPosts(posts);
     const users = readFromUsers();
     res.render("note-vote", {
-      email: req.body.voterEmail,
+      email: req.body.userEmail,
       postsList: posts,
       users: users,
     });
