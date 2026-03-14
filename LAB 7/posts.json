@@ -40,12 +40,5 @@
     "creator": "secondUser@gmail.com",
     "upvotes": [],
     "downvotes": ["aoo988@uregina.ca"]
-  },
-  {
-    "_id": "6",
-    "text": "Test post. Lets see if im finally done ffs ",
-    "creator": "aoo988@uregina.ca",
-    "upvotes": [],
-    "downvotes": []
   }
 ]
