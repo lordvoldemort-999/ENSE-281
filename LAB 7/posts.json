@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "0",
+    "text": "First post by User 1",
+    "creator": "User 1",
+    "upvotes": [],
+    "downvotes": []
+  },
+  {
+    "_id": "1",
+    "text": "Second post by User 1",
+    "creator": "User 1",
+    "upvotes": [2],
+    "downvotes": []
+  },
+  {
+    "_id": "2",
+    "text": "Third post by User 1",
+    "creator": "User 1",
+    "upvotes": [],
+    "downvotes": [2]
+  },
+  {
+    "_id": "3",
+    "text": "First post by User 2",
+    "creator": "User 2",
+    "upvotes": [],
+    "downvotes": []
+  },
+  {
+    "__id": "4",
+    "text": "Second post made by User 2",
+    "creator": "User 2",
+    "upvotes": [],
+    "downvotes": []
+  },
+  {
+    "__id": "5",
+    "text": "Third post by User 2",
+    "creator": "User 2",
+    "upvotes": [],
+    "downvotes": [1]
+  }
+]
