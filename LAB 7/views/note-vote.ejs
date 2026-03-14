@@ -47,10 +47,13 @@
                   </button>
 
                   <div id="user-dropdown" class="dropdown-menu">
-                    <button class="dropdown-item" data-id="0">User A</button>
-                    <button class="dropdown-item" data-id="1">User B</button>
-                    <button class="dropdown-item" data-id="2">User C</button>
-                  </div>
+                    <% for (let user of users) { %>
+                        <form action="/switch-user" method="POST">
+                        <input type="hidden" name="newEmail" value="<%= user.email %>" />
+                        <button type="submit" class="dropdown-item"><%= user.email %></button>
+                        </form>
+                    <% } %>
+                </div>
                 </div>
               </div>
             </div>
@@ -65,33 +68,16 @@
                 <% for (let post of postsList) { %>
                     <li class="list-group-item border rounded p-2 d-flex align-items-center gap-2 my-1"> 
                         <%= post.text %> 
-                        <%- include("partials/vote.ejs", {post, email}) -%>
+                        <% if (post.creator !== email) { %>
+                            <%- include("partials/vote.ejs", {post, email}) -%>
+                        <% } %>
+                        <span class="border-start p-1 ms-2">
+                            <%= post.upvotes.length - post.downvotes.length %>
+                        </span>
                     </li>
                 <% } %>
             </ul>
-            <div class="note-div my-1">
-              <input
-                type="text"
-                id="to-upload"
-                class="form-control"
-                placeholder="this is a note you submitted"
-              />
-              <button type="button" class="btn btn-outline-success ms-1" id="upload-btn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-arrow-up"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
-                  />
-                </svg>
-              </button>
-            </div>
+            <%- include("partials/post.ejs", {email}) -%>
           </div>
         </div>
       </div>
