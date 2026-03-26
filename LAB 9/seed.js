@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const passportLocalMongoose = require("passport-local-mongoose");
+const passportLocalMongoose = require("passport-local-mongoose").default;
 mongoose.connect("mongodb://localhost:27017/notevote");
 
 const userSchema = new mongoose.Schema({
