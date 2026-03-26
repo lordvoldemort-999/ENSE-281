@@ -75,3 +75,8 @@ async function createDB() {
 }
 
 createDB();
+
+module.exports = {
+  User,
+  Post,
+};
