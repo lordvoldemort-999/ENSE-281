@@ -5,10 +5,6 @@ const passportLocalMongoose = require("passport-local-mongoose").default;
 const express = require("express");
 require("dotenv").config();
 
-mongoose.connect("mongodb://localhost:27017/notevote");
-
-const { User, Post } = require("./seed.js");
-
 const app = express();
 const port = 3000;
 
@@ -27,10 +23,24 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(User.createStrategy());
+const { User, Post, createDB } = require("./seed.js");
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+async function startServer() {
+  try {
+    mongoose.connect("mongodb://127.0.0.1:27017/notevote");
+    console.log("MongoDB connected");
+    passport.use(User.createStrategy());
+    passport.serializeUser(User.serializeUser());
+    passport.deserializeUser(User.deserializeUser());
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`);
+    });
+  } catch (err) {
+    console.error("Failed to connect MongoDB", err);
+  }
+}
+
+startServer();
 
 app.get("/", (req, res) => {
   res.render("index");
@@ -44,7 +54,11 @@ app.get("/note-vote", async (req, res) => {
       const posts = await Post.find();
       const users = await User.find();
       console.log(posts, users);
-      res.render("note-vote", { postsList: posts, username: req.user.username, users});
+      res.render("note-vote", {
+        postsList: posts,
+        username: req.user.username,
+        users,
+      });
     } catch (error) {
       console.log(error.message);
     }
@@ -54,10 +68,13 @@ app.get("/note-vote", async (req, res) => {
   }
 });
 
-app.post("/login", passport.authenticate("local", {
-  successRedirect: "/note-vote",
-  failureRedirect: "/",
-}));
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/note-vote",
+    failureRedirect: "/",
+  }),
+);
 
 app.post("/register", async (req, res) => {
   console.log("User", req.body.username, "is attempting to register");
@@ -72,11 +89,11 @@ app.post("/register", async (req, res) => {
     await User.register(user, req.body.password);
 
     passport.authenticate("local")(req, res, () => {
-      res.redirect("/login");
+      res.redirect("/note-vote");
     });
   } catch (err) {
     console.error("Error registering user:", err.message);
-    res.redirect("/"); 
+    res.redirect("/");
   }
 });
 
@@ -86,17 +103,17 @@ async function voteOnPost(postId, username, type) {
 
   if (type === "upvote") {
     if (post.upvotes.includes(username)) {
-      post.upvotes = post.upvotes.filter(u => u !== username);
+      post.upvotes = post.upvotes.filter((u) => u !== username);
     } else {
       post.upvotes.push(username);
-      post.downvotes = post.downvotes.filter(u => u !== username);
+      post.downvotes = post.downvotes.filter((u) => u !== username);
     }
   } else if (type === "downvote") {
     if (post.downvotes.includes(username)) {
-      post.downvotes = post.downvotes.filter(u => u !== username);
+      post.downvotes = post.downvotes.filter((u) => u !== username);
     } else {
       post.downvotes.push(username);
-      post.upvotes = post.upvotes.filter(u => u !== username);
+      post.upvotes = post.upvotes.filter((u) => u !== username);
     }
   }
 
@@ -113,11 +130,7 @@ app.post("/upvote", async (req, res) => {
     const posts = await Post.find();
     const users = await User.find();
 
-    res.render("note-vote", {
-      username: req.user.username,
-      postsList: posts,
-      users,
-    });
+    res.redirect("/note-vote");
   } catch (err) {
     console.error(err);
     res.status(500).send("Internal Server Error");
@@ -133,11 +146,7 @@ app.post("/downvote", async (req, res) => {
     const posts = await Post.find();
     const users = await User.find();
 
-    res.render("note-vote", {
-      username: req.user.username,
-      postsList: posts,
-      users,
-    });
+    res.redirect("/note-vote");
   } catch (err) {
     console.error(err);
     res.status(500).send("Internal Server Error");
@@ -200,8 +209,4 @@ app.post("/switch-user", async (req, res, next) => {
     console.error(err);
     res.status(500).send("Internal Server Error");
   }
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
 });
